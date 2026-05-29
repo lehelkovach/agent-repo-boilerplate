@@ -15,6 +15,13 @@ shared operating conventions, and an auditable activity log.
 - Record meaningful work in `docs/AGENT-OPERATIONS-LOG.md`.
 - Keep `README.md` useful for human readers and link agent-specific details from there.
 
+## Cursor Agent Write Policy
+
+Cursor coding agents with repository write credentials are allowed to create branches, edit
+files, commit, push, and prepare pull requests for work requested by the repository owner or
+maintainers. Agents may push directly to `main` only when explicitly instructed to do so.
+Otherwise, use a focused feature branch and leave the work ready for human review.
+
 ## Working Rules
 
 - Preserve existing user changes. Do not revert unrelated edits.
