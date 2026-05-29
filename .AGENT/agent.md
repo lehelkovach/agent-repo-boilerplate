@@ -180,6 +180,38 @@ repository, `origin/main` preserves the default version. In target repositories,
 	   by existing or added verification.
 -->
 
+<!--
+9.7) Optional: Universal Repo Readiness Configuration
+	a) Section Label: Universal Readiness
+	b) Description: Configure the repo around unit tests plus live goal-demonstration tests.
+	c) Prompt: Organize this repo so changes are considered ready only when targeted unit
+	   tests pass and live tests demonstrate the user-facing goals, features, or use cases
+	   that matter for the project. Prefer tests that prove the intended behavior from the
+	   user's perspective, not only implementation details. Keep the test commands documented
+	   in `.AGENT/agent.md`, and log the exact readiness evidence in
+	   `.AGENT/agent-action-log.md`.
+-->
+
+<!--
+9.8) Optional: Cursor Live Dev Environment and Agentic Debug Loop
+	a) Section Label: Cursor Live Dev
+	b) Description: Cursor-specific prompting for a dev branch, live dev service, hot
+	   reload, controlled runtime logs, and agent-driven input/output debugging.
+	c) Prompt: Use a `dev` branch for continuous delivery to a dev service when the repo is
+	   ready for a live environment. If requested, help provision or document a dev server
+	   on an Oracle Cloud free-tier VM whose VM name matches the repo name. Use platform
+	   secrets for credentials and never commit secret values. Configure the dev service for
+	   hot reload from code pushed to the `dev` branch when the stack supports it.
+	d) Prompt: Add or standardize a runtime console log sink that appends output with
+	   controllable levels such as debug, info, warn, error, and trace. The log must avoid
+	   secrets and sensitive user data. Document where the log lives, how to change levels,
+	   and how to rotate or clear it safely.
+	e) Prompt: For agentic debugging, allow the agent to provide safe input to the running
+	   project, then await expected behavior by reading newly appended runtime log output.
+	   The agent should compare observed output to expected behavior, adjust code or config,
+	   and repeat until the live test demonstrates the goal or a clear blocker is logged.
+-->
+
 10) Support Files
 	a) Keep agent support files inside `.AGENT/`.
 	b) Use `.AGENT/dev-notes.md` for future agent infrastructure notes, including
