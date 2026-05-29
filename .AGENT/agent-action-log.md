@@ -4,6 +4,28 @@ Append meaningful agent activity here in reverse chronological order. Keep entri
 and factual so future agents and human maintainers can understand what changed, how it was
 verified, and what remains.
 
+## 2026-05-29 - Expand README usage scope
+
+1) Timestamp
+	a) 2026-05-29 03:22 UTC
+2) Agent
+	a) Cursor cloud coding agent
+3) Role
+	a) Master repo agent
+4) Branch
+	a) cursor/reorganize-agent-boilerplate-063e
+5) Scope
+	a) Root README and agent action log
+6) Actions
+	a) Expanded README with repository description, scope, current agent benefits, setup
+	   flow for creating `.AGENT/agent.md` from `.AGENT/.agent-template.md`, and example
+	   startup instructions for coding agents.
+7) Verification
+	a) Reviewed `README.md`, `git diff --check`, `git diff --stat`, and `git status`;
+	   documentation-only change, no automated tests available.
+8) Follow-ups
+	a) None currently known.
+
 ## 2026-05-29 - Add agent run files and feedback loop
 
 1) Timestamp
