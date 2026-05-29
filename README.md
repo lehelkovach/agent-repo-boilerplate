@@ -1,30 +1,44 @@
 # Agent Repo Boilerplate
 
-This repository contains a minimal coding-agent boilerplate for projects that want
-predictable autonomous-agent onboarding and handoff practices.
+This repository is organized as a minimal coding-agent boilerplate. The root stays simple:
+`README.md` explains the layout, and `.AGENT/` contains the agent prompt, template, log, and
+support files.
 
-## Included Files
+## Repository Organization
 
-- `.AGENTS` - compact manifest pointing agents to the repository guidance.
-- `AGENTS.md` - repository-wide instructions for coding agents.
-- `.agent/base-agent.md` - baseline operating prompt for coding agents.
-- `docs/AGENT-OPERATIONS-LOG.md` - append-only log for meaningful agent activity.
-- `README.md` - human-facing overview of the repository.
+1) Root Directory
+	a) `README.md` is the human-facing overview and organization guide.
+	b) `.AGENT/` contains all coding-agent boilerplate and support files.
+	c) No root-level agent prompt files or `docs/` folder are used by default.
 
-## Using This Boilerplate
+2) `.AGENT/` Directory
+	a) `.AGENT/.agent-template.md` is the reusable template for new forks.
+	b) `.AGENT/agent.md` is created from the template and then customized for this
+	   repository.
+	c) `.AGENT/agent-action-log.md` records meaningful agent setup, implementation,
+	   verification, and handoff activity.
+	d) `.AGENT/dev-notes.md` stores future-facing notes for inter-agent communication,
+	   agentic environment variables, and support-file conventions.
 
-1. Read `AGENTS.md` before delegating work to a coding agent.
-2. Customize `.agent/base-agent.md` with project-specific workflow expectations.
-3. Keep `docs/AGENT-OPERATIONS-LOG.md` current when agents make non-trivial changes.
-4. Add project setup, test, and deployment instructions here as the repository grows.
+## How to Use This Boilerplate
 
-## Cursor Agent Access
+1) Start With the Template
+	a) Copy or generate `.AGENT/agent.md` from `.AGENT/.agent-template.md`.
+	b) Keep the base-agent section generic so downstream forks can reuse it.
+	c) Add repository-specific directions below the `#### Below: Repository-Specific
+	   Directions` heading in `.AGENT/agent.md`.
 
-Cursor agents that are launched with write credentials for this repository may create
-branches, commit, push, and prepare pull requests. Direct pushes to `main` should only happen
-when the repository owner or maintainers explicitly request them.
+2) Customize the Agent Prompt
+	a) Put common prompting that should apply to every repository in the base-agent section.
+	b) Put repo-specific rules, behavior, commands, and priorities below the base section.
+	c) Organize rules in priority order so agents can resolve conflicts predictably.
 
-## Status
+3) Maintain the Action Log
+	a) Update `.AGENT/agent-action-log.md` for non-trivial agent work.
+	b) Record what changed, how it was verified, and any follow-ups.
+	c) Keep entries in reverse chronological order.
 
-The repository is currently seeded with documentation-only boilerplate. Add project-specific
-source code, tooling, and verification commands as they become available.
+## Current Status
+
+This repo currently contains documentation-only boilerplate. Add project-specific source code,
+tooling, verification commands, and agent infrastructure details as the repository evolves.
