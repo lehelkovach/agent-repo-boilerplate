@@ -17,7 +17,10 @@ support files.
 	   repository.
 	c) `.AGENT/agent-action-log.md` records meaningful agent setup, implementation,
 	   verification, and handoff activity.
-	d) `.AGENT/dev-notes.md` stores future-facing notes for inter-agent communication,
+	d) `.AGENT/agent-run.md` stores recurring startup operations and standing checks.
+	e) `.AGENT/agent-run-once.md` stores one-time startup operations that agents remove
+	   after completion and record in the action log.
+	f) `.AGENT/dev-notes.md` stores future-facing notes for inter-agent communication,
 	   agentic environment variables, and support-file conventions.
 
 ## How to Use This Boilerplate
@@ -37,6 +40,18 @@ support files.
 	a) Update `.AGENT/agent-action-log.md` for non-trivial agent work.
 	b) Record what changed, how it was verified, and any follow-ups.
 	c) Keep entries in reverse chronological order.
+
+4) Use Run Files for Agent OS Behavior
+	a) Put recurring startup behavior in `.AGENT/agent-run.md`.
+	b) Put one-time startup operations in `.AGENT/agent-run-once.md`.
+	c) Agents should process run-once items, remove completed items from the queue, and log
+	   the result with timestamp, agent name, role, branch, and verification.
+
+5) Keep Prompt Feedback Persistent
+	a) When maintainers give new standing instructions, add them to the appropriate
+	   `.AGENT/` file so future agents can pick them up.
+	b) Keep generic base-agent behavior in the template and generated prompt.
+	c) Keep repository-specific behavior in `.AGENT/agent.md`.
 
 ## Current Status
 

@@ -27,6 +27,30 @@ placeholders until the repository adopts concrete inter-agent services.
 	c) Any required local-only values should be documented here as names and purpose, not as
 	   live values.
 
+## Agent Runtime Coordination
+
+1) Run Files
+	a) `.AGENT/agent-run.md` is the persistent runbook for recurring startup operations.
+	b) `.AGENT/agent-run-once.md` is the one-shot queue for startup operations that should
+	   be removed after completion.
+	c) Agents should append completed or blocked one-shot work to
+	   `.AGENT/agent-action-log.md` before finishing.
+
+2) Prompt Feedback
+	a) New maintainer instructions that should persist beyond the current chat should be
+	   written into the appropriate `.AGENT/` file.
+	b) Generic prompting belongs in `.AGENT/.agent-template.md` and should be mirrored into
+	   `.AGENT/agent.md`.
+	c) Repository-only prompting belongs below the repository-specific section of
+	   `.AGENT/agent.md`.
+
+3) Synchronization Notes
+	a) Shared `.AGENT/` state is easiest to coordinate when it is kept current on `main`.
+	b) Feature branches are safer for review or concurrent edits, but agents should avoid
+	   letting long-lived branches diverge in prompt, runbook, or run-once queue files.
+	c) When merging prompt updates, preserve other agents' log entries and pending
+	   run-once items.
+
 ## Open Design Notes
 
 1) Template Evolution

@@ -4,6 +4,30 @@ Append meaningful agent activity here in reverse chronological order. Keep entri
 and factual so future agents and human maintainers can understand what changed, how it was
 verified, and what remains.
 
+## 2026-05-29 - Add agent run files and feedback loop
+
+1) Timestamp
+	a) 2026-05-29 03:20 UTC
+2) Agent
+	a) Cursor cloud coding agent
+3) Role
+	a) Master repo agent
+4) Branch
+	a) cursor/reorganize-agent-boilerplate-063e
+5) Scope
+	a) Agent prompt template, generated prompt, run files, README, and dev notes
+6) Actions
+	a) Added startup/run-file instructions, prompt feedback loop behavior, agent identity
+	   guidance, `.AGENT/agent-run.md`, `.AGENT/agent-run-once.md`, and documentation for
+	   processing one-shot operations and syncing shared `.AGENT/` state.
+7) Verification
+	a) Reviewed `.AGENT/.agent-template.md`, `.AGENT/agent.md`, `.AGENT/agent-run.md`,
+	   `.AGENT/agent-run-once.md`, `.AGENT/dev-notes.md`, `README.md`,
+	   `git diff --check`, `git diff --stat`, and `git status`; documentation-only
+	   change, no automated tests available.
+8) Follow-ups
+	a) None currently known.
+
 ## 2026-05-29 - Add optional prompt command blocks
 
 1) Agent
