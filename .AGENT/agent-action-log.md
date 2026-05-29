@@ -4,6 +4,23 @@ Append meaningful agent activity here in reverse chronological order. Keep entri
 and factual so future agents and human maintainers can understand what changed, how it was
 verified, and what remains.
 
+## 2026-05-29 - Add optional prompt command blocks
+
+1) Agent
+	a) Cursor cloud coding agent
+2) Scope
+	a) Base-agent prompt template and generated prompt
+3) Actions
+	a) Added commented, Linux-config-style optional prompt command blocks for diagnostic
+	   logging, test coverage, error handling, documentation, security review, and small
+	   refactoring.
+4) Verification
+	a) Reviewed `.AGENT/.agent-template.md`, `.AGENT/agent.md`, `git diff --check`,
+	   `git diff --stat`, and `git status`; documentation-only change, no automated tests
+	   available.
+5) Follow-ups
+	a) None currently known.
+
 ## 2026-05-29 - Reorganize agent boilerplate
 
 1) Agent
