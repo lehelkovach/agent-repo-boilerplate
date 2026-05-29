@@ -62,3 +62,51 @@ placeholders until the repository adopts concrete inter-agent services.
 	a) Agent support files should remain inside `.AGENT/`.
 	b) The root directory should remain easy to scan, with `README.md` as the human-facing
 	   entry point.
+
+## Future Distribution and Setup
+
+1) Product Direction
+	a) This repo may evolve from a copyable boilerplate into an installable setup tool.
+	b) The tool should initialize `.AGENT/`, create or refresh `.AGENT/agent.md` from the
+	   template, and guide the maintainer through a setup conversation.
+	c) The setup flow should support choosing an agent brand or target environment, such as
+	   Cursor, GitHub Copilot coding agent, Claude-style agents, Codex-style agents, or a
+	   generic Markdown-only mode.
+
+2) npm Global CLI Option
+	a) Possible command shape: `npm install -g agent-repo-boilerplate`.
+	b) Possible setup command: `agent-repo init` or `agent-boilerplate init`.
+	c) The CLI could ask questions, copy `.AGENT/` files, activate optional prompt blocks,
+	   and write agent-brand adapter instructions when requested.
+	d) npm may be a good fit if the setup tool is primarily a cross-platform developer CLI.
+
+3) Python/pip CLI Option
+	a) Possible command shape: `pipx install agent-repo-boilerplate` or
+	   `pip install agent-repo-boilerplate`.
+	b) Possible setup command: `agent-repo init`.
+	c) Python may be a good fit if future smoke tests, repo scans, or template transforms
+	   stay script-heavy.
+
+4) Git Bootstrap Option
+	a) Possible command shape: clone this repo, then copy `.AGENT/` into a target repo.
+	b) Possible one-liner shape: fetch an install script from a pinned tag and run it from
+	   the target repository root.
+	c) Git-only setup keeps the project simple before a package manager is chosen.
+	d) Any bootstrap script should be auditable, version-pinned, and safe to run without
+	   secrets.
+
+5) Agent-Led Setup Conversation
+	a) Future setup can be driven by an agent prompt rather than only a CLI.
+	b) The maintainer could tell their agent: "Install the agent boilerplate, ask me setup
+	   questions, choose the Cursor adapter, and commit the result."
+	c) The agent should ask about repo type, preferred agent brand, direct-main versus PR
+	   workflow, logging expectations, test requirements, and inter-agent coordination.
+	d) The completed setup should update `.AGENT/agent.md`, `.AGENT/agent-run.md`,
+	   `.AGENT/dev-notes.md`, and `.AGENT/agent-action-log.md`.
+
+6) Open Decisions
+	a) Choose whether npm, pip/pipx, git-only bootstrap, or an agent-led setup prompt should
+	   be the first supported install path.
+	b) Define package name, command name, versioning policy, and template migration behavior.
+	c) Decide whether brand-specific adapters stay as commented blocks inside `.AGENT/` or
+	   can optionally generate platform files outside `.AGENT/`.
