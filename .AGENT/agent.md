@@ -52,6 +52,15 @@ repository, `origin/main` preserves the default version. In target repositories,
 	f) Log every prompt, runbook, or run-once change in `.AGENT/agent-action-log.md`.
 	g) Prefer keeping shared `.AGENT/` state synced on `main`; use feature branches for
 	   review or concurrent work when direct `main` updates could cause conflicts.
+	h) When a new instruction requires the agent to pivot or update its own operating
+	   behavior, write the new behavior into `.AGENT/agent.md` before relying on it.
+	i) Commit and push the `.AGENT/agent.md` update so the new programming is durable and
+	   available to future agents.
+	j) Bootstrap the change by starting or requesting a replacement agent in the same repo
+	   and instructing it to read the updated `.AGENT/agent.md` from the pushed branch.
+	k) Treat the replacement agent as the active agent for the changed behavior; the current
+	   agent should finish only the handoff, logging, verification, commit, and push needed
+	   to make the replacement safe.
 
 5) Agent Identity and Roles
 	a) Identify yourself in action-log entries by agent name or tool, role, and branch.

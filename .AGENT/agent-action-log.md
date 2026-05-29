@@ -4,6 +4,28 @@ Append meaningful agent activity here in reverse chronological order. Keep entri
 and factual so future agents and maintainers can understand what changed, how it was
 verified, and what remains.
 
+## 2026-05-29 - Add agent pivot bootstrap instructions
+
+1) Timestamp
+	a) 2026-05-29 03:39 UTC
+2) Agent
+	a) Cursor cloud coding agent
+3) Role
+	a) Master repo agent
+4) Branch
+	a) cursor/remove-agent-template-063e
+5) Scope
+	a) `.AGENT/agent.md` base-agent prompt and action log
+6) Actions
+	a) Added base prompt instructions for agents to persist operating-behavior pivots in
+	   `.AGENT/agent.md`, commit and push the prompt update, then bootstrap a replacement
+	   agent that reads the updated prompt.
+7) Verification
+	a) Ran `python3 .AGENT/tests/agent_architecture_smoke.py`, `git diff --check`,
+	   `git diff --stat`, and `git status`; smoke test passed.
+8) Follow-ups
+	a) None currently known.
+
 ## 2026-05-29 - Remove redundant agent template file
 
 1) Timestamp
