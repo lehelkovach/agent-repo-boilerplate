@@ -55,6 +55,8 @@ contains the agent prompt, template, action log, run files, and support notes.
 	   after completion and record in the action log.
 	f) `.AGENT/dev-notes.md` stores future-facing notes for inter-agent communication,
 	   agentic environment variables, and support-file conventions.
+	g) `.AGENT/tests/` contains smoke tests for the boilerplate architecture.
+	h) `.AGENT/test-output/` contains generated test transcripts.
 
 ## How to Use This Boilerplate
 
@@ -112,6 +114,24 @@ contains the agent prompt, template, action log, run files, and support notes.
 	   `.AGENT/` file so future agents can pick them up.
 	b) Keep generic base-agent behavior in the template and generated prompt.
 	c) Keep repository-specific behavior in `.AGENT/agent.md`.
+
+## Testing the Boilerplate
+
+Run the smoke test from the repository root:
+
+```sh
+python3 .AGENT/tests/agent_architecture_smoke.py
+```
+
+The test:
+
+1) Verifies required `.AGENT/` files exist and old root-level agent artifacts are absent.
+2) Confirms `.AGENT/agent.md` has not drifted from the template base-agent section.
+3) Creates a temporary sample sub-repo.
+4) Copies the `.AGENT/` boilerplate into that sub-repo.
+5) Runs a Cursor-style agent simulation that reads startup files, processes a run-once item,
+   clears the queue, appends the action log, and emits chat-style console output.
+6) Writes the transcript to `.AGENT/test-output/cursor-agent-smoke.md`.
 
 ## Current Status
 

@@ -55,7 +55,7 @@ across repositories and may be customized after forking.
 	a) Identify yourself in action-log entries by agent name or tool, role, and branch.
 	b) Use "master repo agent" for the primary agent coordinating repository-level prompt,
 	   runbook, and synchronization changes.
-	c) Use "sub-agent" or "slave sub-agent" for delegated agents working on narrower tasks.
+	c) Use "worker sub-agent" for delegated agents working on narrower tasks.
 	d) If multiple agents touch `.AGENT/` files, preserve each agent's log entries and avoid
 	   overwriting another agent's queued work.
 
@@ -182,8 +182,8 @@ across repositories and may be customized after forking.
 	a) This repository is a coding-agent boilerplate. Keep the organization clear and
 	   portable for downstream forks.
 	b) Keep tracked root-level content limited to `README.md` and the `.AGENT/` directory.
-	c) Do not restore root-level `.AGENTS`, `AGENTS.md`, `.agent/`, or `docs/` boilerplate
-	   locations unless explicitly requested.
+	c) Keep legacy root-level agent prompt files out of this boilerplate unless explicitly
+	   requested.
 
 2) Cursor Agent Write Policy
 	a) Cursor coding agents with repository write credentials may create branches, edit
