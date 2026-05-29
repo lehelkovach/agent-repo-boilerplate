@@ -1,7 +1,8 @@
 # Agent Prompt
 
-This file was created from `.AGENT/.agent-template.md`. The base-agent section is generic
-across repositories and may be customized after forking.
+This file is both the canonical boilerplate prompt and the live repo prompt. In this source
+repository, `origin/main` preserves the default version. In target repositories, copy
+`.AGENT/agent.md` from this repo, then customize the repository-specific section below.
 
 ## Base-Agent Section
 
@@ -39,10 +40,11 @@ across repositories and may be customized after forking.
 
 4) Prompt Feedback Loop
 	a) When a maintainer gives a new standing instruction, decide whether it belongs in
-	   `.AGENT/agent.md`, `.AGENT/.agent-template.md`, `.AGENT/agent-run.md`,
-	   `.AGENT/agent-run-once.md`, `.AGENT/dev-notes.md`, or only the current task notes.
+	   `.AGENT/agent.md`, `.AGENT/agent-run.md`, `.AGENT/agent-run-once.md`,
+	   `.AGENT/dev-notes.md`, or only the current task notes.
 	b) Add generic instructions that should apply to every fork to the base-agent section of
-	   `.AGENT/.agent-template.md`, then mirror them into `.AGENT/agent.md`.
+	   `.AGENT/agent.md` in this source repo, where version control preserves the canonical
+	   default.
 	c) Add repository-specific rules to `.AGENT/agent.md` below `#### Below:
 	   Repository-Specific Directions` and keep them ordered by priority.
 	d) Add recurring operational instructions to `.AGENT/agent-run.md`.
@@ -194,8 +196,9 @@ across repositories and may be customized after forking.
 	c) Otherwise, use a focused feature branch and leave work ready for human review.
 
 3) Boilerplate Customization
-	a) Treat `.AGENT/.agent-template.md` as the source template for new forks.
-	b) Create or refresh `.AGENT/agent.md` from the template, then customize this
+	a) Treat `.AGENT/agent.md` on `origin/main` as the source template for new forks and
+	   target-repo updates.
+	b) Copy or refresh `.AGENT/agent.md` from this source, then customize this
 	   repository-specific section below the base-agent content.
 	c) Keep common prompting in the base-agent section; keep project-only rules in this
 	   repository-specific section.

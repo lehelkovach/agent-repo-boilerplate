@@ -39,8 +39,7 @@ placeholders until the repository adopts concrete inter-agent services.
 2) Prompt Feedback
 	a) New maintainer instructions that should persist beyond the current chat should be
 	   written into the appropriate `.AGENT/` file.
-	b) Generic prompting belongs in `.AGENT/.agent-template.md` and should be mirrored into
-	   `.AGENT/agent.md`.
+	b) Generic prompting belongs in the base-agent section of `.AGENT/agent.md`.
 	c) Repository-only prompting belongs below the repository-specific section of
 	   `.AGENT/agent.md`.
 
@@ -54,9 +53,9 @@ placeholders until the repository adopts concrete inter-agent services.
 ## Open Design Notes
 
 1) Template Evolution
-	a) Keep common prompting in `.AGENT/.agent-template.md`.
-	b) Keep repository-specific operational rules in `.AGENT/agent.md` below the base-agent
-	   section.
+	a) Treat `.AGENT/agent.md` on `origin/main` as the canonical template and live prompt.
+	b) Keep repository-specific operational rules below the base-agent section.
+	c) Avoid a separate template file unless future packaging needs one for generation.
 
 2) Support File Placement
 	a) Agent support files should remain inside `.AGENT/`.
@@ -67,8 +66,8 @@ placeholders until the repository adopts concrete inter-agent services.
 
 1) Product Direction
 	a) This repo may evolve from a copyable boilerplate into an installable setup tool.
-	b) The tool should initialize `.AGENT/`, create or refresh `.AGENT/agent.md` from the
-	   template, and guide the maintainer through a setup conversation.
+	b) The tool should initialize `.AGENT/`, copy or refresh `.AGENT/agent.md` from this
+	   source repo, and guide the maintainer through a setup conversation.
 	c) The setup flow should support choosing an agent brand or target environment, such as
 	   Cursor, GitHub Copilot coding agent, Claude-style agents, Codex-style agents, or a
 	   generic Markdown-only mode.

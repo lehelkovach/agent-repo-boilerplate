@@ -35,7 +35,7 @@ Agents should read this file at the start of each run after reading `.AGENT/agen
 ## Active Recurring Items
 
 1) Maintain Boilerplate Cohesion
-	a) Keep `.AGENT/.agent-template.md` and `.AGENT/agent.md` aligned for generic base-agent
-	   behavior.
-	b) Keep repository-specific behavior only in `.AGENT/agent.md` below the repository
-	   directions heading.
+	a) Keep generic base-agent behavior in `.AGENT/agent.md` concise and reusable for
+	   target repositories.
+	b) Keep repository-specific behavior only below the repository directions heading.
+	c) Use `origin/main` as the canonical default copy of `.AGENT/agent.md`.

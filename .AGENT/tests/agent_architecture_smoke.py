@@ -15,7 +15,6 @@ TRANSCRIPT = AGENT_DIR / "test-output" / "cursor-agent-smoke.md"
 
 REQUIRED = [
     "README.md",
-    ".AGENT/.agent-template.md",
     ".AGENT/agent.md",
     ".AGENT/agent-action-log.md",
     ".AGENT/agent-run.md",
@@ -27,6 +26,7 @@ FORBIDDEN = [
     ".AGENTS",
     "AGENTS.md",
     ".agent",
+    ".AGENT/.agent-template.md",
     "docs",
 ]
 
@@ -38,12 +38,6 @@ def read(path: Path) -> str:
 def assert_true(condition: bool, message: str) -> None:
     if not condition:
         raise AssertionError(message)
-
-
-def base_section(markdown: str) -> str:
-    start = markdown.index("## Base-Agent Section")
-    end = markdown.index("#### Below: Repository-Specific Directions")
-    return markdown[start:end].strip()
 
 
 def copy_agent_boilerplate(target: Path) -> None:
@@ -153,16 +147,18 @@ def main() -> int:
     readme = read(ROOT / "README.md")
     for expected in [
         ".AGENT/agent.md",
-        ".AGENT/.agent-template.md",
         ".AGENT/agent-run.md",
         ".AGENT/agent-run-once.md",
         ".AGENT/agent-action-log.md",
     ]:
         assert_true(expected in readme, f"README does not describe {expected}")
 
-    template_base = base_section(read(AGENT_DIR / ".agent-template.md"))
-    agent_base = base_section(read(AGENT_DIR / "agent.md"))
-    assert_true(template_base == agent_base, "agent.md base section drifted from template")
+    agent_prompt = read(AGENT_DIR / "agent.md")
+    assert_true("## Base-Agent Section" in agent_prompt, "agent.md missing base section")
+    assert_true(
+        "#### Below: Repository-Specific Directions" in agent_prompt,
+        "agent.md missing repo-specific section",
+    )
 
     with tempfile.TemporaryDirectory(prefix="agent-boilerplate-smoke-") as tmp:
         subrepo = Path(tmp) / "sample-sub-repo"

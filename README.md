@@ -12,7 +12,7 @@ Cursor agent copies or updates the target repo's `.AGENT/` directory from this s
 customizes `.AGENT/agent.md`, run files, and dev notes for that specific repo.
 
 The root stays intentionally small: `README.md` explains the boilerplate, and `.AGENT/`
-contains the agent prompt, template, action log, run files, and support notes.
+contains the agent prompt, action log, run files, and support notes.
 
 ## What This Helps Agents Do Today
 
@@ -23,7 +23,7 @@ contains the agent prompt, template, action log, run files, and support notes.
 
 2) Preserve Prompt Feedback
 	a) Maintainer instructions that should apply beyond the current chat can be written into
-	   `.AGENT/agent.md`, `.AGENT/.agent-template.md`, or the run files.
+	   `.AGENT/agent.md` or the run files.
 	b) Generic base-agent prompting stays reusable for forks.
 	c) Repo-specific behavior stays below the repository-specific section in
 	   `.AGENT/agent.md`.
@@ -50,24 +50,23 @@ contains the agent prompt, template, action log, run files, and support notes.
 	c) No root-level agent prompt files or `docs/` folder are used by default.
 
 2) `.AGENT/` Directory
-	a) `.AGENT/.agent-template.md` is the reusable template for new forks.
-	b) `.AGENT/agent.md` is created from the template and then customized for this
+	a) `.AGENT/agent.md` is both the reusable source template and the live prompt for this
 	   repository.
-	c) `.AGENT/agent-action-log.md` records meaningful agent setup, implementation,
+	b) `.AGENT/agent-action-log.md` records meaningful agent setup, implementation,
 	   verification, and handoff activity.
-	d) `.AGENT/agent-run.md` stores recurring startup operations and standing checks.
-	e) `.AGENT/agent-run-once.md` stores one-time startup operations that agents remove
+	c) `.AGENT/agent-run.md` stores recurring startup operations and standing checks.
+	d) `.AGENT/agent-run-once.md` stores one-time startup operations that agents remove
 	   after completion and record in the action log.
-	f) `.AGENT/dev-notes.md` stores future-facing notes for inter-agent communication,
+	e) `.AGENT/dev-notes.md` stores future-facing notes for inter-agent communication,
 	   agentic environment variables, and support-file conventions.
-	g) `.AGENT/tests/` contains smoke tests for the boilerplate architecture.
-	h) `.AGENT/test-output/` contains generated test transcripts.
+	f) `.AGENT/tests/` contains smoke tests for the boilerplate architecture.
+	g) `.AGENT/test-output/` contains generated test transcripts.
 
 ## How to Use This Boilerplate
 
 1) Use Cursor to Seed or Update a Repo
 	a) In a new repo, ask Cursor to copy this repo's `.AGENT/` directory into the target
-	   repo root and create `.AGENT/agent.md` from `.AGENT/.agent-template.md`.
+	   repo root.
 	b) In an existing repo, ask Cursor to compare the target repo's `.AGENT/` directory with
 	   this source boilerplate, update generic base-agent material, and preserve
 	   repo-specific customizations.
@@ -84,14 +83,9 @@ contains the agent prompt, template, action log, run files, and support notes.
 	   an adapter later.
 
 3) Create the Repo Agent Prompt
-	a) From the root of the target repo, create `.AGENT/agent.md` from
-	   `.AGENT/.agent-template.md`.
-	b) Example:
-
-	   ```sh
-	   cp .AGENT/.agent-template.md .AGENT/agent.md
-	   ```
-
+	a) Use `.AGENT/agent.md` from this source repo as the starting prompt.
+	b) `origin/main` preserves the canonical default copy, so no separate template file is
+	   needed.
 	c) Keep the base-agent section generic so downstream forks can reuse it.
 	d) Add repository-specific directions below the `#### Below: Repository-Specific
 	   Directions` heading in `.AGENT/agent.md`.
@@ -128,7 +122,7 @@ contains the agent prompt, template, action log, run files, and support notes.
 8) Keep Prompt Feedback Persistent
 	a) When maintainers give new standing instructions, add them to the appropriate
 	   `.AGENT/` file so future agents can pick them up.
-	b) Keep generic base-agent behavior in the template and generated prompt.
+	b) Keep generic base-agent behavior in `.AGENT/agent.md`.
 	c) Keep repository-specific behavior in `.AGENT/agent.md`.
 
 ## Testing the Boilerplate
@@ -142,7 +136,7 @@ python3 .AGENT/tests/agent_architecture_smoke.py
 The test:
 
 1) Verifies required `.AGENT/` files exist and old root-level agent artifacts are absent.
-2) Confirms `.AGENT/agent.md` has not drifted from the template base-agent section.
+2) Confirms `.AGENT/agent.md` includes the required base-agent and repo-specific sections.
 3) Creates a temporary sample sub-repo.
 4) Copies the `.AGENT/` boilerplate into that sub-repo.
 5) Runs a Cursor-style agent simulation that reads startup files, processes a run-once item,

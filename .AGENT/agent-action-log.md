@@ -4,6 +4,28 @@ Append meaningful agent activity here in reverse chronological order. Keep entri
 and factual so future agents and maintainers can understand what changed, how it was
 verified, and what remains.
 
+## 2026-05-29 - Remove redundant agent template file
+
+1) Timestamp
+	a) 2026-05-29 03:38 UTC
+2) Agent
+	a) Cursor cloud coding agent
+3) Role
+	a) Master repo agent
+4) Branch
+	a) cursor/remove-agent-template-063e
+5) Scope
+	a) `.AGENT/agent.md`, README, runbook, dev notes, smoke test, and action log
+6) Actions
+	a) Removed `.AGENT/.agent-template.md` and made `.AGENT/agent.md` the canonical
+	   version-controlled source prompt and live repo prompt.
+7) Verification
+	a) Ran `python3 .AGENT/tests/agent_architecture_smoke.py`, `git diff --check`,
+	   `git diff --stat`, `git status`, and a stale-template reference search; smoke test
+	   passed.
+8) Follow-ups
+	a) None currently known.
+
 ## 2026-05-29 - Clarify Cursor-first repo setup function
 
 1) Timestamp
@@ -83,12 +105,11 @@ verified, and what remains.
 5) Scope
 	a) Repository agent boilerplate architecture
 6) Actions
-	a) Consolidated agent support into `.AGENT/`, added the template/generated prompt,
+	a) Consolidated agent support into `.AGENT/`, added the canonical agent prompt,
 	   runbook, run-once queue, dev notes, optional prompt blocks, README usage guide, and
 	   repo-specific directions.
 7) Verification
 	a) Reviewed `.AGENT/` files, root README, repository tree, `git diff --check`,
 	   `git diff --stat`, and `git status`; documentation-only change.
 8) Follow-ups
-	a) Keep `.AGENT/agent.md` and `.AGENT/.agent-template.md` aligned for generic
-	   base-agent instructions.
+	a) Keep generic base-agent instructions in `.AGENT/agent.md` concise and reusable.
