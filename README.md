@@ -6,6 +6,11 @@ manager, CI system, or agent orchestration server. Its scope is the repo-local f
 help agents understand how to start, what prompt to follow, where to record work, and how to
 persist new standing instructions for future runs.
 
+The main function today is for a Cursor agent to use this repository as the source
+boilerplate when creating a new repo or starting/continuing work in an existing repo. The
+Cursor agent copies or updates the target repo's `.AGENT/` directory from this source, then
+customizes `.AGENT/agent.md`, run files, and dev notes for that specific repo.
+
 The root stays intentionally small: `README.md` explains the boilerplate, and `.AGENT/`
 contains the agent prompt, template, action log, run files, and support notes.
 
@@ -60,14 +65,25 @@ contains the agent prompt, template, action log, run files, and support notes.
 
 ## How to Use This Boilerplate
 
-1) Add the Boilerplate to a Repo
+1) Use Cursor to Seed or Update a Repo
+	a) In a new repo, ask Cursor to copy this repo's `.AGENT/` directory into the target
+	   repo root and create `.AGENT/agent.md` from `.AGENT/.agent-template.md`.
+	b) In an existing repo, ask Cursor to compare the target repo's `.AGENT/` directory with
+	   this source boilerplate, update generic base-agent material, and preserve
+	   repo-specific customizations.
+	c) After copying or updating, ask Cursor to customize the repository-specific section of
+	   `.AGENT/agent.md` for the target repo's stack, commands, workflow, and risks.
+	d) Cursor should record setup/update work in the target repo's
+	   `.AGENT/agent-action-log.md`.
+
+2) Add the Boilerplate Manually
 	a) In the root directory of the main origin repository, keep `README.md` at root and
 	   place all agent support files under `.AGENT/`.
 	b) If starting fresh, copy this repository's `.AGENT/` directory into the target repo.
 	c) Do not add separate root-level agent prompt files unless a specific platform requires
 	   an adapter later.
 
-2) Create the Repo Agent Prompt
+3) Create the Repo Agent Prompt
 	a) From the root of the target repo, create `.AGENT/agent.md` from
 	   `.AGENT/.agent-template.md`.
 	b) Example:
@@ -80,7 +96,7 @@ contains the agent prompt, template, action log, run files, and support notes.
 	d) Add repository-specific directions below the `#### Below: Repository-Specific
 	   Directions` heading in `.AGENT/agent.md`.
 
-3) Instruct Agents on Startup
+4) Instruct Agents on Startup
 	a) Tell each coding agent to start by reading `.AGENT/agent.md`.
 	b) The agent prompt then instructs the agent to read `.AGENT/agent-run.md`,
 	   `.AGENT/agent-run-once.md`, `.AGENT/dev-notes.md`, and recent
@@ -93,23 +109,23 @@ contains the agent prompt, template, action log, run files, and support notes.
 	   .AGENT/agent-action-log.md with meaningful work and verification.
 	   ```
 
-4) Customize the Agent Prompt
+5) Customize the Agent Prompt
 	a) Put common prompting that should apply to every repository in the base-agent section.
 	b) Put repo-specific rules, behavior, commands, and priorities below the base section.
 	c) Organize rules in priority order so agents can resolve conflicts predictably.
 
-5) Maintain the Action Log
+6) Maintain the Action Log
 	a) Update `.AGENT/agent-action-log.md` for non-trivial agent work.
 	b) Record what changed, how it was verified, and any follow-ups.
 	c) Keep entries in reverse chronological order.
 
-6) Use Run Files for Agent OS Behavior
+7) Use Run Files for Agent OS Behavior
 	a) Put recurring startup behavior in `.AGENT/agent-run.md`.
 	b) Put one-time startup operations in `.AGENT/agent-run-once.md`.
 	c) Agents should process run-once items, remove completed items from the queue, and log
 	   the result with timestamp, agent name, role, branch, and verification.
 
-7) Keep Prompt Feedback Persistent
+8) Keep Prompt Feedback Persistent
 	a) When maintainers give new standing instructions, add them to the appropriate
 	   `.AGENT/` file so future agents can pick them up.
 	b) Keep generic base-agent behavior in the template and generated prompt.

@@ -184,6 +184,8 @@ across repositories and may be customized after forking.
 	b) Keep tracked root-level content limited to `README.md` and the `.AGENT/` directory.
 	c) Keep legacy root-level agent prompt files out of this boilerplate unless explicitly
 	   requested.
+	d) Treat the present-day primary use case as Cursor agents seeding or updating
+	   `.AGENT/` in target repositories, then customizing those files for each repo.
 
 2) Cursor Agent Write Policy
 	a) Cursor coding agents with repository write credentials may create branches, edit
@@ -197,6 +199,9 @@ across repositories and may be customized after forking.
 	   repository-specific section below the base-agent content.
 	c) Keep common prompting in the base-agent section; keep project-only rules in this
 	   repository-specific section.
+	d) When updating an existing repo from this boilerplate, preserve that repo's
+	   repository-specific directions, action log, run-once queue, and dev notes unless the
+	   maintainer asks to reset them.
 
 4) Verification
 	a) This repository currently contains documentation-only boilerplate.

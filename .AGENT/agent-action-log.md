@@ -4,6 +4,28 @@ Append meaningful agent activity here in reverse chronological order. Keep entri
 and factual so future agents and maintainers can understand what changed, how it was
 verified, and what remains.
 
+## 2026-05-29 - Clarify Cursor-first repo setup function
+
+1) Timestamp
+	a) 2026-05-29 03:29 UTC
+2) Agent
+	a) Cursor cloud coding agent
+3) Role
+	a) Master repo agent
+4) Branch
+	a) cursor/reorganize-agent-boilerplate-063e
+5) Scope
+	a) README, `.AGENT/agent.md`, `.AGENT/dev-notes.md`, and action log
+6) Actions
+	a) Clarified that the main current function is for Cursor agents to seed or update
+	   `.AGENT/` in new or existing target repos from this source, then customize the
+	   target repo's prompt, run files, dev notes, and action log.
+7) Verification
+	a) Ran `python3 .AGENT/tests/agent_architecture_smoke.py`, `git diff --check`,
+	   `git diff --stat`, and `git status`; smoke test passed.
+8) Follow-ups
+	a) Future installer work can build on this Cursor-first setup flow.
+
 ## 2026-05-29 - Capture future installer direction
 
 1) Timestamp

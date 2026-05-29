@@ -72,6 +72,11 @@ placeholders until the repository adopts concrete inter-agent services.
 	c) The setup flow should support choosing an agent brand or target environment, such as
 	   Cursor, GitHub Copilot coding agent, Claude-style agents, Codex-style agents, or a
 	   generic Markdown-only mode.
+	d) The main function before that packaging exists is Cursor-driven setup: a Cursor agent
+	   uses this repo as the source, adds or updates `.AGENT/` in a target repo, and then
+	   customizes the target repo's prompt, run files, action log, and dev notes.
+	e) Updates to existing repos should preserve repo-specific sections and operational
+	   history while refreshing generic boilerplate content.
 
 2) npm Global CLI Option
 	a) Possible command shape: `npm install -g agent-repo-boilerplate`.
@@ -103,6 +108,9 @@ placeholders until the repository adopts concrete inter-agent services.
 	   workflow, logging expectations, test requirements, and inter-agent coordination.
 	d) The completed setup should update `.AGENT/agent.md`, `.AGENT/agent-run.md`,
 	   `.AGENT/dev-notes.md`, and `.AGENT/agent-action-log.md`.
+	e) For Cursor specifically, the setup conversation should support both "create a new
+	   repo with this `.AGENT/` boilerplate" and "continue an existing repo by updating its
+	   `.AGENT/` boilerplate from this source."
 
 6) Open Decisions
 	a) Choose whether npm, pip/pipx, git-only bootstrap, or an agent-led setup prompt should
