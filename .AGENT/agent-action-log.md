@@ -4,6 +4,28 @@ Append meaningful agent activity here in reverse chronological order. Keep entri
 and factual so future agents and maintainers can understand what changed, how it was
 verified, and what remains.
 
+## 2026-05-30 - Add optional user preference prompt blocks
+
+1) Timestamp
+	a) 2026-05-30 06:30 UTC
+2) Agent
+	a) Cursor cloud coding agent
+3) Role
+	a) Master repo agent
+4) Branch
+	a) cursor/remove-agent-template-063e
+5) Scope
+	a) `.AGENT/agent.md` optional prompt library and action log
+6) Actions
+	a) Added commented optional prompt blocks for preserving repo customizations during
+	   boilerplate updates, evidence-first handoffs, explicit environment/secret
+	   assumptions, standard handoff packets, and live service safety.
+7) Verification
+	a) Ran `python3 .AGENT/tests/agent_architecture_smoke.py`, `git diff --check`,
+	   `git diff --stat`, and `git status`; smoke test passed.
+8) Follow-ups
+	a) None currently known.
+
 ## 2026-05-29 - Add optional universal readiness and live dev prompts
 
 1) Timestamp

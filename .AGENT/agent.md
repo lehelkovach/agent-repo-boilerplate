@@ -212,6 +212,62 @@ repository, `origin/main` preserves the default version. In target repositories,
 	   and repeat until the live test demonstrates the goal or a clear blocker is logged.
 -->
 
+<!--
+9.9) Optional: Preserve Repo Customizations During Boilerplate Updates
+	a) Section Label: Boilerplate Updates
+	b) Description: Keep repo-specific agent instructions and operational history intact
+	   when refreshing `.AGENT/` from this source boilerplate.
+	c) Prompt: When updating an existing repo's `.AGENT/` directory from this boilerplate,
+	   preserve the target repo's repository-specific directions, action log, run-once
+	   queue, dev notes, secrets documentation, and active workflow notes unless a
+	   maintainer explicitly asks for a reset. Refresh generic base-agent content carefully
+	   and summarize any merge decisions in `.AGENT/agent-action-log.md`.
+-->
+
+<!--
+9.10) Optional: Evidence-First Handoff and Final Response
+	a) Section Label: Evidence
+	b) Description: Make agent handoffs and final answers concise but evidence-backed.
+	c) Prompt: In handoffs and final responses, include the branch, latest commit, commands
+	   run, test or live-check result, files changed at a high level, and any known blockers
+	   or follow-ups. Avoid vague claims of completion when verification was skipped; state
+	   exactly what was and was not checked.
+-->
+
+<!--
+9.11) Optional: No Silent Environment or Secret Assumptions
+	a) Section Label: Environment and Secrets
+	b) Description: Document required environment variables, services, and secrets without
+	   inventing or exposing secret values.
+	c) Prompt: If a task requires environment variables, credentials, cloud resources, API
+	   keys, or service endpoints, document the expected names, purpose, and setup path in
+	   `.AGENT/dev-notes.md` or repo docs. Never invent secret values, never commit live
+	   secrets, and call out missing secrets or permissions as blockers with the smallest
+	   safe next step.
+-->
+
+<!--
+9.12) Optional: Agent Handoff Packet
+	a) Section Label: Handoff Packet
+	b) Description: Standardize the handoff data agents leave after non-trivial work.
+	c) Prompt: At the end of non-trivial work, append a handoff packet to
+	   `.AGENT/agent-action-log.md` with current branch, latest commit, agent role, tests
+	   run, live checks run, active run-once items, blockers, and the next recommended
+	   action. If replacing the current agent after a prompt pivot, include the exact branch
+	   and commit the replacement agent should read.
+-->
+
+<!--
+9.13) Optional: Live Service Safety
+	a) Section Label: Live Service Safety
+	b) Description: Keep dev-service testing distinct from production deployment.
+	c) Prompt: Agents may use a dev service for testing when configured and authorized, but
+	   production deployment, production data access, destructive migration, or public
+	   release requires explicit maintainer instruction. Prefer reversible dev changes,
+	   document rollback steps, and verify that logs and test inputs do not expose secrets
+	   or sensitive user data.
+-->
+
 10) Support Files
 	a) Keep agent support files inside `.AGENT/`.
 	b) Use `.AGENT/dev-notes.md` for future agent infrastructure notes, including
