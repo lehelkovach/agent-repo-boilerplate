@@ -4,6 +4,28 @@ Append meaningful agent activity here in reverse chronological order. Keep entri
 and factual so future agents and maintainers can understand what changed, how it was
 verified, and what remains.
 
+## 2026-06-01 - Add optional Slack webhook communication prompt
+
+1) Timestamp
+	a) 2026-06-01 04:08 UTC
+2) Agent
+	a) Cursor cloud coding agent
+3) Role
+	a) Master repo agent
+4) Branch
+	a) dev
+5) Scope
+	a) `.AGENT/agent.md`, `.AGENT/dev-notes.md`, and action log
+6) Actions
+	a) Added a commented optional Cursor Slack/webhook communication prompt block with
+	   identity envelope guidance and documented optional notification environment
+	   variables.
+7) Verification
+	a) Ran `python3 .AGENT/tests/agent_architecture_smoke.py`, `git diff --check`,
+	   `git diff --stat`, and `git status`; smoke test passed.
+8) Follow-ups
+	a) None currently known.
+
 ## 2026-05-30 - Add optional user preference prompt blocks
 
 1) Timestamp

@@ -19,6 +19,11 @@ placeholders until the repository adopts concrete inter-agent services.
 	c) `AGENT_UUID`: Placeholder UUID registered for the current agent runtime.
 	d) `AGENT_REPO_SLUG`: Placeholder repository owner/name value for agent registration.
 	e) `AGENT_RUN_ID`: Placeholder run identifier for correlating logs and bus messages.
+	f) `SLACK_WEBHOOK_URL`: Optional secret for Slack or compatible webhook notifications.
+	g) `SLACK_CHANNEL`: Optional default channel name or identifier for agent status
+	   messages when the webhook service supports it.
+	h) `AGENT_NOTIFY_LEVEL`: Optional notification threshold such as `off`, `blockers`,
+	   `handoff`, or `all`.
 
 3) Registration Notes
 	a) Future agents may register their UUID, capabilities, repository scope, and current

@@ -268,6 +268,31 @@ repository, `origin/main` preserves the default version. In target repositories,
 	   or sensitive user data.
 -->
 
+<!--
+9.14) Optional: Cursor Slack/Webhook Communication
+	a) Section Label: Slack/Webhook Communication
+	b) Description: Cursor-specific prompting for agent status messages through Slack or a
+	   compatible webhook when the repo is configured for it.
+	c) Prompt: If Slack or webhook communication is requested, first check whether the repo
+	   documents a configured webhook secret such as `SLACK_WEBHOOK_URL` or a compatible
+	   agent notification endpoint. Never print, log, commit, or echo the webhook value. If
+	   no webhook is configured, document the missing setup in `.AGENT/dev-notes.md` and
+	   continue without external notification unless the task requires it.
+	d) Prompt: When notifications are configured and authorized, send concise messages for
+	   meaningful lifecycle events: run start, branch selected, prompt/bootstrap pivot,
+	   commit pushed, dev deploy started/completed, blocker found, handoff ready, and task
+	   complete. Avoid noisy per-file updates.
+	e) Prompt: Include a consistent identity envelope in each message: `agent=<name>`,
+	   `repo=<owner/name>`, `branch=<branch>`, `role=<master|worker-sub-agent|subtask>`,
+	   `event=<event>`, `status=<started|blocked|passed|failed|complete>`, and a short
+	   human-readable summary. Include commit SHA, PR URL, dev URL, or log path only when
+	   available and safe.
+	f) Prompt: Record each external notification attempt in `.AGENT/agent-action-log.md`
+	   with whether it was sent, skipped, or blocked by missing configuration. If a
+	   notification fails, do not retry indefinitely; log the failure and continue the repo
+	   work unless notification delivery is the task itself.
+-->
+
 10) Support Files
 	a) Keep agent support files inside `.AGENT/`.
 	b) Use `.AGENT/dev-notes.md` for future agent infrastructure notes, including
