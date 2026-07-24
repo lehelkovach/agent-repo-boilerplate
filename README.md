@@ -143,6 +143,21 @@ The test:
    clears the queue, appends the action log, and emits chat-style console output.
 6) Writes the transcript to `.AGENT/test-output/cursor-agent-smoke.md`.
 
+## Adopt in a repo (standard agent-convention scaffold)
+
+To standardize a project repo on the committed-rules approach (preferred over any
+runtime "rules injection"), give it:
+
+1. **`AGENTS.md`** — repo role, commands, gitflow, plus a 2-line pointer to the
+   canonical environment handoff (`osl-oc-agent/.AGENT/handoffs/CURSOR-ENV-HANDOFF.md`).
+2. **`.cursor/rules/agent-conventions.mdc`** — copy `.cursor/rules/` from here.
+3. **`.AGENT/`** — copy this scaffold (`agent.md`, `agent-run.md`,
+   `agent-action-log.md`, and `handoffs/` with `HANDOFF-TEMPLATE.md`); keep the
+   generic base here canonical and put repo-specific direction in the repo's copy.
+
+Cursor, Codex, and other agents read `AGENTS.md` / `.cursor/rules` natively — no
+runtime injection required, and everything is version-controlled and reviewable.
+
 ## Current Status
 
 This repo currently contains documentation-only boilerplate. Add project-specific source code,

@@ -1,0 +1,15 @@
+---
+description: Baseline agent conventions (canonical starter rule)
+alwaysApply: true
+---
+
+Starter Cursor project rule. Copy `.cursor/rules/` into a consuming repo alongside
+the `.AGENT/` scaffold and customize as needed.
+
+- Read `AGENTS.md` and `.AGENT/agent.md` at the start of work; follow `.AGENT/agent-run.md`.
+- Gitflow: branch from the integration branch, PR back into it, one logical change
+  per branch. Do not merge PRs or push to protected branches unless told.
+- Never print or commit secret values; secrets are injected as env vars.
+- Keep `.AGENT/agent-action-log.md` current; use `.AGENT/handoffs/` (see
+  `HANDOFF-TEMPLATE.md`) when handing off work.
+- Prefer editing existing files over creating new ones.
