@@ -1,149 +1,75 @@
 # Agent Repo Boilerplate
 
-This repository is a minimal boilerplate for giving coding agents a consistent operating
-surface inside a Git repository. It does not provide an application runtime, package
-manager, CI system, or agent orchestration server. Its scope is the repo-local files that
-help agents understand how to start, what prompt to follow, where to record work, and how to
-persist new standing instructions for future runs.
+A small, vendor-neutral initializer for repositories that need reliable continuity across
+coding-agent sessions. It standardizes discoverable instructions and handoffs while leaving
+task tracking, Git history, pull requests, and live orchestration in their proper systems.
 
-The main function today is for a Cursor agent to use this repository as the source
-boilerplate when creating a new repo or starting/continuing work in an existing repo. The
-Cursor agent copies or updates the target repo's `.AGENT/` directory from this source, then
-customizes `.AGENT/agent.md`, run files, and dev notes for that specific repo.
+## What v2 provides
 
-The root stays intentionally small: `README.md` explains the boilerplate, and `.AGENT/`
-contains the agent prompt, action log, run files, and support notes.
+- a concise root `AGENTS.md` template recognized by modern coding agents;
+- a stable `.AGENT/RUNBOOK.md` and one handoff file per task;
+- an optional Cursor adapter;
+- a dry-run-first, idempotent Python installer and v1 upgrader;
+- migration that preserves existing instructions and archives v1 state;
+- tests proving fresh installation, idempotency, safe preservation, v1 migration, and
+  conflict-free handoffs from parallel worktrees.
 
-## What This Helps Agents Do Today
+It deliberately does not provide an orchestration server, agent runtime, Slack integration,
+autonomous spawning, or a required task tracker. Use Issues or an optional tool such as Beads
+for durable task state; use IAC Bus or another dedicated service for live coordination.
 
-1) Start Consistently
-	a) Agents have a known first-read location: `.AGENT/agent.md`.
-	b) Recurring startup behavior is documented in `.AGENT/agent-run.md`.
-	c) One-time startup actions are queued in `.AGENT/agent-run-once.md`.
+## Install or preview
 
-2) Preserve Prompt Feedback
-	a) Maintainer instructions that should apply beyond the current chat can be written into
-	   `.AGENT/agent.md` or the run files.
-	b) Generic base-agent prompting stays reusable for forks.
-	c) Repo-specific behavior stays below the repository-specific section in
-	   `.AGENT/agent.md`.
-
-3) Improve Handoffs
-	a) Agents record meaningful setup, implementation, verification, and blocked work in
-	   `.AGENT/agent-action-log.md`.
-	b) Log entries include timestamp, agent name, role, branch, scope, verification, and
-	   follow-ups.
-	c) Master repo agents and sub-agents can coordinate through shared `.AGENT/` files.
-
-4) Stay Vendor-Neutral
-	a) The boilerplate is plain Markdown.
-	b) Commercial-agent-specific instructions can be added as commented optional blocks
-	   without forcing a platform-specific root file layout.
-	c) Cursor, Copilot, Claude, Codex-style, or other agents can be pointed at the same
-	   `.AGENT/agent.md` entry point.
-
-## Repository Organization
-
-1) Root Directory
-	a) `README.md` is the human-facing overview and organization guide.
-	b) `.AGENT/` contains all coding-agent boilerplate and support files.
-	c) No root-level agent prompt files or `docs/` folder are used by default.
-
-2) `.AGENT/` Directory
-	a) `.AGENT/agent.md` is both the reusable source template and the live prompt for this
-	   repository.
-	b) `.AGENT/agent-action-log.md` records meaningful agent setup, implementation,
-	   verification, and handoff activity.
-	c) `.AGENT/agent-run.md` stores recurring startup operations and standing checks.
-	d) `.AGENT/agent-run-once.md` stores one-time startup operations that agents remove
-	   after completion and record in the action log.
-	e) `.AGENT/dev-notes.md` stores future-facing notes for inter-agent communication,
-	   agentic environment variables, and support-file conventions.
-	f) `.AGENT/tests/` contains smoke tests for the boilerplate architecture.
-	g) `.AGENT/test-output/` contains generated test transcripts.
-
-## How to Use This Boilerplate
-
-1) Use Cursor to Seed or Update a Repo
-	a) In a new repo, ask Cursor to copy this repo's `.AGENT/` directory into the target
-	   repo root.
-	b) In an existing repo, ask Cursor to compare the target repo's `.AGENT/` directory with
-	   this source boilerplate, update generic base-agent material, and preserve
-	   repo-specific customizations.
-	c) After copying or updating, ask Cursor to customize the repository-specific section of
-	   `.AGENT/agent.md` for the target repo's stack, commands, workflow, and risks.
-	d) Cursor should record setup/update work in the target repo's
-	   `.AGENT/agent-action-log.md`.
-
-2) Add the Boilerplate Manually
-	a) In the root directory of the main origin repository, keep `README.md` at root and
-	   place all agent support files under `.AGENT/`.
-	b) If starting fresh, copy this repository's `.AGENT/` directory into the target repo.
-	c) Do not add separate root-level agent prompt files unless a specific platform requires
-	   an adapter later.
-
-3) Create the Repo Agent Prompt
-	a) Use `.AGENT/agent.md` from this source repo as the starting prompt.
-	b) `origin/main` preserves the canonical default copy, so no separate template file is
-	   needed.
-	c) Keep the base-agent section generic so downstream forks can reuse it.
-	d) Add repository-specific directions below the `#### Below: Repository-Specific
-	   Directions` heading in `.AGENT/agent.md`.
-
-4) Instruct Agents on Startup
-	a) Tell each coding agent to start by reading `.AGENT/agent.md`.
-	b) The agent prompt then instructs the agent to read `.AGENT/agent-run.md`,
-	   `.AGENT/agent-run-once.md`, `.AGENT/dev-notes.md`, and recent
-	   `.AGENT/agent-action-log.md` entries.
-	c) Example startup instruction:
-
-	   ```text
-	   Before working, read .AGENT/agent.md and follow its startup instructions.
-	   Process .AGENT/agent-run.md and .AGENT/agent-run-once.md, then update
-	   .AGENT/agent-action-log.md with meaningful work and verification.
-	   ```
-
-5) Customize the Agent Prompt
-	a) Put common prompting that should apply to every repository in the base-agent section.
-	b) Put repo-specific rules, behavior, commands, and priorities below the base section.
-	c) Organize rules in priority order so agents can resolve conflicts predictably.
-
-6) Maintain the Action Log
-	a) Update `.AGENT/agent-action-log.md` for non-trivial agent work.
-	b) Record what changed, how it was verified, and any follow-ups.
-	c) Keep entries in reverse chronological order.
-
-7) Use Run Files for Agent OS Behavior
-	a) Put recurring startup behavior in `.AGENT/agent-run.md`.
-	b) Put one-time startup operations in `.AGENT/agent-run-once.md`.
-	c) Agents should process run-once items, remove completed items from the queue, and log
-	   the result with timestamp, agent name, role, branch, and verification.
-
-8) Keep Prompt Feedback Persistent
-	a) When maintainers give new standing instructions, add them to the appropriate
-	   `.AGENT/` file so future agents can pick them up.
-	b) Keep generic base-agent behavior in `.AGENT/agent.md`.
-	c) Keep repository-specific behavior in `.AGENT/agent.md`.
-
-## Testing the Boilerplate
-
-Run the smoke test from the repository root:
+Preview the default template in another repository:
 
 ```sh
-python3 .AGENT/tests/agent_architecture_smoke.py
+python3 scripts/apply_template.py /path/to/repository
 ```
 
-The test:
+Apply it only after reviewing the plan:
 
-1) Verifies required `.AGENT/` files exist and old root-level agent artifacts are absent.
-2) Confirms `.AGENT/agent.md` includes the required base-agent and repo-specific sections.
-3) Creates a temporary sample sub-repo.
-4) Copies the `.AGENT/` boilerplate into that sub-repo.
-5) Runs a Cursor-style agent simulation that reads startup files, processes a run-once item,
-   clears the queue, appends the action log, and emits chat-style console output.
-6) Writes the transcript to `.AGENT/test-output/cursor-agent-smoke.md`.
+```sh
+python3 scripts/apply_template.py /path/to/repository --apply
+```
 
-## Current Status
+The installer never silently overwrites a differing file. Existing `AGENTS.md` content is
+reported for manual merge, and recognized v1 files are copied to `.AGENT/archive/v1/` before
+the maintainer removes them.
 
-This repo currently contains documentation-only boilerplate. Add project-specific source code,
-tooling, verification commands, and agent infrastructure details as the repository evolves.
+## Installed layout
+
+```text
+AGENTS.md
+.AGENT/
+  RUNBOOK.md
+  handoffs/
+    HANDOFF-TEMPLATE.md
+.cursor/
+  rules/
+    agent-conventions.mdc
+```
+
+The source files are under `templates/default/`; the root `AGENTS.md` governs development of
+this repository itself.
+
+## Continuity model
+
+1. Put durable repository policy in `AGENTS.md`.
+2. Put active task state, ownership, and acceptance criteria in an issue or task system.
+3. Use one branch and worktree per task.
+4. Put implementation and verification evidence in commits and pull requests.
+5. Use a uniquely named handoff file only when state must cross sessions before a PR exists.
+6. Move architectural history into ADRs rather than a generic activity log.
+
+See [the v1 migration guide](docs/MIGRATION_V1_TO_V2.md) for the exact mapping and upgrade
+behavior.
+
+## Verify
+
+```sh
+python3 scripts/validate_template.py
+python3 -m unittest discover -s tests -v
+git diff --check
+```
+
+The project uses only the Python standard library.
