@@ -11,8 +11,10 @@ repository instructions as the downstream template.
   branches unless explicitly instructed.
 - Keep durable repository guidance in `AGENTS.md`. Keep active task ownership and
   acceptance criteria in an issue, and verification evidence in the PR.
-- Create one `.AGENT/handoffs/<issue>-<task>.md` file only when another session needs
-  continuity before a PR exists. Never use a shared append-only activity log.
+- This repository dogfoods its own template: stable startup steps are in
+  `.AGENT/RUNBOOK.md`. Create one `.AGENT/handoffs/<issue>-<task>.md` file only when
+  another session needs continuity before a PR exists. Never use a shared append-only
+  activity log.
 - Preserve existing repository-specific instructions and unrelated user changes.
 - Never print or commit secrets. Record required secret names only.
 
