@@ -22,6 +22,11 @@
   belong in this file.
 - If work must pass to another session before a pull request exists, copy
   `.AGENT/handoffs/HANDOFF-TEMPLATE.md` to a uniquely named task file.
+- Write every audit, diagnosis, measurement or review to
+  `.AGENT/reports/YYYY-MM-DD-<slug>.md` and add it to the index in
+  `.AGENT/reports/README.md`, so the maintainer and later sessions can read it
+  without the chat. A finding that changes policy goes into this file or the
+  relevant document, with a link to the report.
 - Never coordinate concurrent agents through one shared queue or append-only action log.
   Git branches, worktrees, issues, commits, and pull requests are the durable record.
 

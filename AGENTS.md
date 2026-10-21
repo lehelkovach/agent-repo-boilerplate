@@ -13,6 +13,9 @@ repository instructions as the downstream template.
   acceptance criteria in an issue, and verification evidence in the PR.
 - Create one `.AGENT/handoffs/<issue>-<task>.md` file only when another session needs
   continuity before a PR exists. Never use a shared append-only activity log.
+- Write every audit, diagnosis, measurement or review to
+  `.AGENT/reports/YYYY-MM-DD-<slug>.md` and index it in `.AGENT/reports/README.md`. The
+  template ships that directory; downstream repositories keep their reports there.
 - Preserve existing repository-specific instructions and unrelated user changes.
 - Never print or commit secrets. Record required secret names only.
 

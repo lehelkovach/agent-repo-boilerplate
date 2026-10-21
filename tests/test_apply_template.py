@@ -109,6 +109,28 @@ class InstallerTests(unittest.TestCase):
             )
             self.assertEqual(agent, (legacy / "agent.md").read_text(encoding="utf-8"))
 
+    def test_reports_directory_is_installed_and_required(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "sample"
+            target.mkdir()
+            self.install(target)
+            readme = target / ".AGENT/reports/README.md"
+            self.assertTrue(readme.is_file())
+            content = readme.read_text(encoding="utf-8")
+            self.assertIn("YYYY-MM-DD-<slug>.md", content)
+            self.assertIn("## Index", content)
+            for name in ("AGENTS.md", ".AGENT/RUNBOOK.md", ".cursor/rules/agent-conventions.mdc"):
+                self.assertIn(".AGENT/reports/", (target / name).read_text(encoding="utf-8"))
+
+            readme.unlink()
+            result = subprocess.run(
+                [sys.executable, str(VALIDATOR), str(target)],
+                text=True,
+                capture_output=True,
+            )
+            self.assertEqual(1, result.returncode)
+            self.assertIn("missing required file: .AGENT/reports/README.md", result.stdout)
+
     def test_task_specific_handoffs_merge_from_two_worktrees(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             repository = Path(directory) / "repository"

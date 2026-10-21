@@ -13,6 +13,7 @@ REQUIRED = (
     Path("AGENTS.md"),
     Path(".AGENT/RUNBOOK.md"),
     Path(".AGENT/handoffs/HANDOFF-TEMPLATE.md"),
+    Path(".AGENT/reports/README.md"),
     Path(".cursor/rules/agent-conventions.mdc"),
 )
 FORBIDDEN_PHRASES = (

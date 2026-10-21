@@ -12,6 +12,7 @@ agent to edit one queue or activity log.
 | `.AGENT/agent-run.md` | `.AGENT/RUNBOOK.md` |
 | `.AGENT/agent-run-once.md` | Issue or task with acceptance criteria |
 | `.AGENT/agent-action-log.md` | Commits, issue updates, and PR verification |
+| Audit notes in chat or scattered under `docs/` | `.AGENT/reports/<date>-<slug>.md`, indexed in `.AGENT/reports/README.md` |
 | Shared branch coordination | One branch and worktree per task |
 | Runtime/webhook placeholders | IAC Bus or another dedicated coordinator, outside this repo |
 

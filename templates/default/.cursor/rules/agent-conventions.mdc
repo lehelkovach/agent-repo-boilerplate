@@ -7,5 +7,6 @@ alwaysApply: true
 - Use one branch or worktree per task and preserve unrelated changes.
 - Keep task state and acceptance criteria in the issue; keep verification in the PR.
 - Use a uniquely named `.AGENT/handoffs/` file only for temporary cross-session state.
+- Write every audit, diagnosis, measurement or review to `.AGENT/reports/<date>-<slug>.md` and index it in `.AGENT/reports/README.md`.
 - Do not create or maintain a shared action log or run-once queue.
 - Never print or commit secrets; document secret names only.
