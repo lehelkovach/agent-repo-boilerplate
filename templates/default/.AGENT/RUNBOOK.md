@@ -17,5 +17,7 @@ policy belongs in the nearest `AGENTS.md`; active work belongs in an issue or ta
 3. Update the issue or pull request with state, evidence, blockers, and next action.
 4. If no issue or pull request exists yet and continuity is needed, create one uniquely
    named file under `.AGENT/handoffs/` from the template.
+5. If the session audited, diagnosed, measured or reviewed something, write it as
+   `.AGENT/reports/YYYY-MM-DD-<slug>.md` and index it in `.AGENT/reports/README.md`.
 
 Do not add run-once queues, global activity logs, or live messaging configuration here.

@@ -8,6 +8,8 @@ task tracking, Git history, pull requests, and live orchestration in their prope
 
 - a concise root `AGENTS.md` template recognized by modern coding agents;
 - a stable `.AGENT/RUNBOOK.md` and one handoff file per task;
+- a `.AGENT/reports/` directory, one dated file per audit, diagnosis, measurement or
+  review, with an index the maintainer and later sessions read;
 - an optional Cursor adapter;
 - a dry-run-first, idempotent Python installer and v1 upgrader;
 - migration that preserves existing instructions and archives v1 state;
@@ -44,6 +46,8 @@ AGENTS.md
   RUNBOOK.md
   handoffs/
     HANDOFF-TEMPLATE.md
+  reports/
+    README.md
 .cursor/
   rules/
     agent-conventions.mdc
@@ -60,6 +64,8 @@ this repository itself.
 4. Put implementation and verification evidence in commits and pull requests.
 5. Use a uniquely named handoff file only when state must cross sessions before a PR exists.
 6. Move architectural history into ADRs rather than a generic activity log.
+7. File every audit, diagnosis, measurement or review as `.AGENT/reports/<date>-<slug>.md`
+   and index it there; it is evidence, and policy derived from it goes to `AGENTS.md`.
 
 See [the v1 migration guide](docs/MIGRATION_V1_TO_V2.md) for the exact mapping and upgrade
 behavior.
